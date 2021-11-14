@@ -1,8 +1,6 @@
 <?php
 
-    use Illuminate\Support\Str;
-
-    return [
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -31,7 +29,6 @@
     */
 
     'connections' => [
-
         'pusher' => [
             'driver' => 'pusher',
             'key' => env('PUSHER_APP_KEY'),
@@ -55,18 +52,6 @@
         'null' => [
             'driver' => 'null',
         ],
-
     ],
-    /*
-    |--------------------------------------------------------------------------
-    | Broadcasting Key Prefix
-    |--------------------------------------------------------------------------
-    |
-    | When utilizing a RAM based store such as APC or Memcached, there might
-    | be other applications utilizing the same cache. So, we'll specify a
-    | value to get prefixed to all our keys so we can avoid collisions.
-    |
-    */
-    'prefix' => env('BROADCAST_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
 
 ];

@@ -1,9 +1,5 @@
 <?php
 
-use App\Override\Eloquent\LaraframeModel;
-use Torann\GeoIP\Facades\GeoIP;
-use Torann\GeoIP\GeoIPServiceProvider;
-
 return [
 
     /*
@@ -72,6 +68,7 @@ return [
     */
 
     'timezone' => 'UTC',
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -168,9 +165,10 @@ return [
         /*
          * Package Service Providers...
          */
-        Jenssegers\Agent\AgentServiceProvider::class,
-        GeoIPServiceProvider::class,
-        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+	    HolluwaTosin360\Ssr\SsrServiceProvider::class,
+	    HolluwaTosin360\Currency\CurrencyServiceProvider::class,
+	    Jackiedo\DotenvEditor\DotenvEditorServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -178,10 +176,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\HorizonServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\PurifySetupProvider::class,
-
+	    App\Providers\HelperProvider::class,
     ],
 
     /*
@@ -208,7 +204,7 @@ return [
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
         'DB' => Illuminate\Support\Facades\DB::class,
-        'Eloquent' => LaraframeModel::class,
+        'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
@@ -220,7 +216,7 @@ return [
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
-        'RedisManager' => Illuminate\Support\Facades\Redis::class,
+        'Redis' => Illuminate\Support\Facades\Redis::class,
         'Request' => Illuminate\Support\Facades\Request::class,
         'Response' => Illuminate\Support\Facades\Response::class,
         'Route' => Illuminate\Support\Facades\Route::class,
@@ -231,9 +227,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
-        'Agent' => Jenssegers\Agent\Facades\Agent::class,
-        'GeoIP' => GeoIP::class,
     ],
 
 ];

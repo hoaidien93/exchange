@@ -1,8 +1,10 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/menu-builder.css": "/css/menu-builder.css",
-    "/js/language.js": "/js/language.js",
-    "/js/manifest.js": "/js/manifest.js",
-    "/js/vendor.js": "/js/vendor.js"
+    "/css/index.css": "/css/index.css?id=dd67c7a21e998e1a82a3",
+    "/css/dark.css": "/css/dark.css?id=836194a8593b4224b55c",
+    "/css/vendor.css": "/css/vendor.css?id=d3ca0c4cea0f5987836f",
+    "/js/admin/index.js": "/js/admin/index.js?id=824dc331b1bbfd231536",
+    "/js/index.js": "/js/index.js?id=8f18fbac80c63c1fd7fc",
+    "/js/installer/index.js": "/js/installer/index.js?id=d3479c5f1d986bc8525d",
+    "/vendor/pusher.js": "/vendor/pusher.js?id=7c12f57d0e9936d98a6b",
+    "/vendor/socket.js": "/vendor/socket.js?id=21b562712347093e1155"
 }

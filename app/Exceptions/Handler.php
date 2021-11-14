@@ -3,17 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use HolluwaTosin360\BitGoPHP\BitGoException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
-use Illuminate\Support\Str;
-use Illuminate\Validation\UnauthorizedException;
-use Illuminate\Validation\ValidationException;
-
-use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -36,14 +28,14 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /**
-     * Report or log an exception.
-     *
-     * @param Throwable $exception
-     * @return void
-     * @throws Exception
-     */
-    public function report(Throwable $exception)
+	/**
+	 * Report or log an exception.
+	 *
+	 * @param \Exception $exception
+	 * @return void
+	 * @throws Exception
+	 */
+    public function report(Exception $exception)
     {
         parent::report($exception);
     }
@@ -51,38 +43,16 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param Request $request
-     * @param Throwable $exception
-     * @return Response
-     * @throws Exception
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Exception  $exception
+     * @return \Illuminate\Http\Response
      */
-    public function render($request, Throwable $exception)
+    public function render($request, Exception $exception)
     {
-        if ($exception instanceof TokenMismatchException) {
-            if ($request->ajax() || $request->is('api/*')) {
-                return response()->json([
-                    'dismiss' => __('Session expired due to inactivity. Please reload page'),
-                ]);
-            } else {
-                return redirect()->back()->with(['dismiss' => __('Session expired due to inactivity. Please try again')]);
-            }
-        } elseif ($exception instanceof UnauthorizedException) {
-            if ($request->is('api/*')) {
-                return response()->json([
-                    RESPONSE_STATUS_KEY => false,
-                    RESPONSE_MESSAGE_KEY => Str::title(str_replace('_', ' ', $exception->getMessage()))
-                ], $exception->getCode());
-            } else {
-                return response()->view('errors.' . $exception->getMessage(), [], 401);
-            }
-        } elseif (env('APP_ENV') == 'production' && !$exception instanceof ValidationException && !$exception instanceof AuthenticationException) {
-            return response()->view('errors.404');
-        } elseif ($exception instanceof ModelNotFoundException && $request->is('api/*')) {
-            return response()->json([
-                RESPONSE_STATUS_KEY => false,
-                RESPONSE_MESSAGE_KEY => __('The relevant data is not found.')
-            ], 404);
-        }
+	    if ($exception instanceof TokenMismatchException) {
+		    $message = trans('exception.page_expired');
+		    $exception = new TokenMismatchException($message);
+	    }
 
         return parent::render($request, $exception);
     }

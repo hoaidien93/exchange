@@ -8,9 +8,9 @@ return [
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
-    | as Mailgun, Postmark, AWS and more. This file provides the de facto
-    | location for this type of information, allowing packages to have
-    | a conventional file to locate the various service credentials.
+    | as Stripe, Mailgun, SparkPost and others. This file provides a sane
+    | default location for this type of information, allowing packages
+    | to have a conventional place to find your various credentials.
     |
     */
 
@@ -30,4 +30,36 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'sparkpost' => [
+        'secret' => env('SPARKPOST_SECRET'),
+    ],
+
+    'stripe' => [
+        'model' => App\Models\User::class,
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+        'webhook' => [
+            'secret' => env('STRIPE_WEBHOOK_SECRET'),
+            'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
+        ],
+    ],
+
+    'nexmo' => [
+	    'key'      => env('NEXMO_KEY'),
+	    'secret'   => env('NEXMO_SECRET'),
+	    'sms_from' => env('NEXMO_PHONE'),
+    ],
+
+    'africastalking' => [
+	    'username' => env('AFRICASTALKING_USERNAME'),
+	    'key'      => env('AFRICASTALKING_KEY'),
+	    'from'     => env('AFRICASTALKING_FROM'),
+	    'enqueue'  => env('AFRICASTALKING_ENQUEUE', true)
+    ],
+
+    'twilio' => [
+	    'token'  => env('TWILIO_TOKEN'),
+	    'id'     => env('TWILIO_ID'),
+	    'number' => env('TWILIO_NUMBER'),
+    ],
 ];
