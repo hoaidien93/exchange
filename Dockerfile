@@ -19,7 +19,9 @@ RUN apt-get update && apt-get install -y \
 	unzip \
 	git \
 	curl \
-	libonig-dev
+	libonig-dev \
+	libzip
+	
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
