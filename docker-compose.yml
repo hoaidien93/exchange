@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   #PHP Service
   app:
     build:
@@ -19,7 +18,7 @@ services:
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
-
+    user: "1000:1000"
   #Nginx Service
   webserver:
     image: nginx:alpine
@@ -34,7 +33,6 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
-
   #MySQL Service
   db:
     image: mysql:5.7.22
